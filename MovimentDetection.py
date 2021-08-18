@@ -23,6 +23,7 @@ class MovimentDetection:
             self.start()
 
         mask = self.backgroundSubtractor.apply(frame)
+        cv2.imshow('mask', mask)
         
         contours = self.findContours(mask)
         rectangles = Rectangles.getByContours(contours, self.rectanglesMinArea)

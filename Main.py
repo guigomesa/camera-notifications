@@ -83,7 +83,7 @@ def checkMovingObjects(data):
         if (len(labelsImgs) > 20):
             biggestImg = Rectangles.getBiggestImage(labelsImgs)
             cv2.imwrite("sendimage.jpg", biggestImg)
-            telegramBot.sendPhoto(1476103496, "sendimage.jpg")
+            telegramBot.sendPhoto(telegramChatId, "sendimage.jpg")
             idleTimerProcess = TimerProcess(15)
 
             # for img in labelsImgs:
@@ -97,10 +97,7 @@ def checkMovingObjects(data):
 def main():
     global idleTimerProcess
     global timerProcess
-    #camera = Camera(0)
-    # camera = Camera("rtsp://admin:12345678rf@192.168.1.101:554/Streaming/Channels/101/")
-    camera = Camera("rtsp://admin:FGXSOB@192.168.0.3/live/mpeg4")
-    # camera = Camera("rtsp://admin:BTGKGL@192.168.0.4/live/mpeg4")
+    camera = Camera(cameraInput)
     camera.openVideo()
 
     while(True):
@@ -141,6 +138,9 @@ def main():
 
     cv2.destroyAllWindows()
 
+telegramToken = "TELEGRAM-TOKEN"
+telegramChatId = 0 # Id do chat do telegram
+cameraInput = "rtsp://{user}:{password}@{ip}}/live/mpeg4"
 
 movimentDetection = MovimentDetection()
 movimentDetection.objectMinArea = 2500
@@ -148,7 +148,7 @@ movimentDetection.start()
 objectDetection = ObjectDetection()
 faceDetection = FaceDetection()
 timerProcess = None
-telegramBot = TelegramBot("1828798794:AAFodbWLQ1gqdatPe5DeamOOzD0bo4JdxFc")
+telegramBot = TelegramBot(telegramToken)
 idleTimerProcess = None
 
 if __name__ == '__main__':

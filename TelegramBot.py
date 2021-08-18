@@ -23,6 +23,6 @@ class TelegramBot:
         context.bot.send_message(chat_id=chat_id, text="ola mundo")        
 
 def teste():
-    telegramBot = TelegramBot("1828798794:AAFodbWLQ1gqdatPe5DeamOOzD0bo4JdxFc")
+    telegramBot = TelegramBot("TELEGRAM-TOKEN")
     telegramBot.sendMessage(1476103496, "ola mundo")
     telegramBot.sendPhoto(1476103496, "sendimage.jpg")
